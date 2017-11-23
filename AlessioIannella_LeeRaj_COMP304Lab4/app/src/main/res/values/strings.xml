@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AlessioIannella_LeeRaj_COMP304Lab4</string>
+    <string name="welcome_to_the_hospital_app_please_enter_your_id_and_password_to_login">Welcome to the Hospital App! Please enter your ID and password to login</string>
 </resources>

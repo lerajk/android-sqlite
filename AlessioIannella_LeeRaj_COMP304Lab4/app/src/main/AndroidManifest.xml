@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".TestData"></activity>
+        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>

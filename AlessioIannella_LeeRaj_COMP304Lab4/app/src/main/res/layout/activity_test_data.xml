@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutAddUpdate"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <EditText
+        android:id="@+id/testId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="testId"
+        android:inputType="textCapWords" />
+
+    <EditText
+        android:id="@+id/patientId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="patientId"
+        android:inputType="textCapWords" />
+
+    <EditText
+        android:id="@+id/nurseId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="nurseId"
+        android:inputType="textCapWords" />
+
+    <EditText
+        android:id="@+id/nurseId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="nurseId"
+        android:inputType="textCapWords" />
+
+    <EditText
+        android:id="@+id/BPL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="BPL"
+        android:inputType="textCapWords" />
+
+    <EditText
+        android:id="@+id/BHP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="BHP"
+        android:inputType="textCapWords" />
+
+    <EditText
+    android:id="@+id/temperature"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="temperature"
+    android:inputType="textCapWords" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit" />
+
+</LinearLayout>

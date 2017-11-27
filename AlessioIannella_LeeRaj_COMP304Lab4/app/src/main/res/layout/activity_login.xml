@@ -63,4 +63,22 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewDontHaveAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:text="Don't have an account?"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_editor_absoluteY="370dp" />
+
+    <Button
+        android:id="@+id/buttonGoToRegistration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="handleOnClickGoToRegistration"
+        android:text="Create an account"
+        tools:layout_editor_absoluteX="172dp"
+        tools:layout_editor_absoluteY="355dp" />
 </android.support.constraint.ConstraintLayout>

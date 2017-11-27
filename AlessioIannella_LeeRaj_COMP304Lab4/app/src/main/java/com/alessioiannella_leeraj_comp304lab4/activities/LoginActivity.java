@@ -1,10 +1,12 @@
-package com.alessioiannella_leeraj_comp304lab4;
+package com.alessioiannella_leeraj_comp304lab4.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.alessioiannella_leeraj_comp304lab4.R;
 
 public class LoginActivity extends AppCompatActivity {
 

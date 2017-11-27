@@ -1,6 +1,8 @@
 package com.alessioiannella_leeraj_comp304lab4.activities;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,10 +12,15 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.alessioiannella_leeraj_comp304lab4.R;
+import com.alessioiannella_leeraj_comp304lab4.exceptions.DuplicateIDException;
+import com.alessioiannella_leeraj_comp304lab4.exceptions.NurseNotFoundException;
+import com.alessioiannella_leeraj_comp304lab4.helpers.DBHelper;
+import com.alessioiannella_leeraj_comp304lab4.models.Doctor;
+import com.alessioiannella_leeraj_comp304lab4.models.Nurse;
 
 import org.w3c.dom.Text;
 
-public class RegistrationActivity extends BaseActivity {
+public class RegistrationActivity extends AppCompatActivity {
 
     private RadioButton radioButtonNurse;
     private RadioButton radioButtonDoctor;
@@ -29,11 +36,6 @@ public class RegistrationActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-    }
-
-    public void handleOnCLikcGoToLogin(View view){
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
 
         radioButtonNurse = (RadioButton) findViewById(R.id.radioButtonNurse);
         radioButtonDoctor = (RadioButton) findViewById(R.id.radioButtonDoctor);
@@ -46,6 +48,11 @@ public class RegistrationActivity extends BaseActivity {
         editTextConfirmPassword = (EditText) findViewById(R.id.editTextConfirmPassword);
 
         textViewErrorRegistration = (TextView) findViewById(R.id.textViewErrorRegistration);
+    }
+
+    public void handleOnCLikcGoToLogin(View view){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
 
     }
 
@@ -78,6 +85,43 @@ public class RegistrationActivity extends BaseActivity {
         if (!editTextPassword.getText().toString().equals(editTextConfirmPassword.getText().toString())){
             textViewErrorRegistration.setText("Passwords do not match");
             return;
+        }
+
+        if (radioButtonNurse.isChecked()){
+
+            try{
+                DBHelper dbHelper = new DBHelper(this);
+
+                Nurse nurse = new Nurse();
+                nurse.setNurseID(editTextID.getText().toString());
+                nurse.setFirstName(editTextFirstName.getText().toString());
+                nurse.setLastName(editTextLastName.getText().toString());
+                nurse.setDepartment(editTextDepartment.getText().toString());
+                nurse.setPassword(editTextPassword.getText().toString());
+
+                dbHelper.addNurse(nurse);
+            }
+            catch (DuplicateIDException e) {
+                textViewErrorRegistration.setText(e.getLocalizedMessage());
+            }
+
+        }
+        else if (radioButtonDoctor.isChecked()){
+            try{
+                DBHelper dbHelper = new DBHelper(this);
+
+                Doctor doctor = new Doctor();
+                doctor.setDoctorID(editTextID.getText().toString());
+                doctor.setFirstName(editTextFirstName.getText().toString());
+                doctor.setLastName(editTextLastName.getText().toString());
+                doctor.setDepartment(editTextDepartment.getText().toString());
+                doctor.setPassword(editTextPassword.getText().toString());
+
+                dbHelper.addDoctor(doctor);
+            }
+            catch (DuplicateIDException e) {
+                textViewErrorRegistration.setText(e.getLocalizedMessage());
+            }
         }
 
     }

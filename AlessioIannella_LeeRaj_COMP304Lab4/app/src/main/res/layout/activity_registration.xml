@@ -17,6 +17,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/textViewRegistrationTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:text="Please specify if you are a nurse or a doctor, then type your ID and password and click Register!"
+                android:textAlignment="center"
+                app:layout_constraintHorizontal_bias="0.484"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <RadioGroup
                 android:id="@+id/radioGroupNurseDoctor"
                 android:layout_width="wrap_content"
@@ -139,53 +155,51 @@
                 android:id="@+id/textViewErrorRegistration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="245dp"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="8dp"
                 android:textColor="@android:color/holo_red_dark"
                 app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginRight="8dp"
                 app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginLeft="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/buttonRegister"
                 app:layout_constraintHorizontal_bias="0.537" />
-
-            <TextView
-                android:id="@+id/textViewRegistrationTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Please specify if you are a nurse or a doctor, then type your ID and password and click Register!"
-                android:textAlignment="center"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="16dp"
-                app:layout_constraintHorizontal_bias="0.484"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp" />
 
             <TextView
                 android:id="@+id/textViewAlreadyHaveAccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
                 android:text="Already have an account?"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                app:layout_constraintTop_toBottomOf="@id/buttonRegister"
+                android:layout_marginTop="32dp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="16dp"
-                android:layout_marginStart="16dp" />
+                android:layout_marginRight="8dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginLeft="8dp"/>
 
             <Button
                 android:id="@+id/buttonGoToLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
                 android:onClick="handleOnCLikcGoToLogin"
                 android:text="LOGIN"
-                app:layout_constraintLeft_toRightOf="@+id/textViewAlreadyHaveAccount"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="32dp"
-                app:layout_constraintTop_toBottomOf="@+id/buttonRegister"
-                android:layout_marginStart="8dp" />
+                android:gravity="center_horizontal"
+                app:layout_constraintTop_toBottomOf="@id/textViewAlreadyHaveAccount"
+                android:layout_marginTop="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginRight="8dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginLeft="8dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="0dp"
+                app:layout_constraintTop_toBottomOf="@id/buttonGoToLogin"/>
+
 
         </android.support.constraint.ConstraintLayout>
 

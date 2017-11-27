@@ -17,9 +17,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.TestData" />
-        <activity android:name=".activities.LoginActivity" />
+        <activity
+            android:name=".activities.LoginActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize|adjustPan"/>
         <activity android:name=".activities.HomeActivity" />
-        <activity android:name=".activities.RegistrationActivity"></activity>
+        <activity
+            android:name=".activities.RegistrationActivity"
+            android:windowSoftInputMode="adjustResize"></activity>
     </application>
 
 </manifest>

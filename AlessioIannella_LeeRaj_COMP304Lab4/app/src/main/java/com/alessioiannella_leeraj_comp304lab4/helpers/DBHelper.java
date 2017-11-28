@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.alessioiannella_leeraj_comp304lab4.exceptions.DoctorNotFoundException;
 import com.alessioiannella_leeraj_comp304lab4.exceptions.DuplicateIDException;
+import com.alessioiannella_leeraj_comp304lab4.exceptions.LoginFailedException;
 import com.alessioiannella_leeraj_comp304lab4.exceptions.NurseNotFoundException;
 import com.alessioiannella_leeraj_comp304lab4.models.Doctor;
 import com.alessioiannella_leeraj_comp304lab4.models.Nurse;
@@ -50,11 +51,37 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    public void login(String id, String password) throws LoginFailedException{
+
+        sqLiteDatabase = getReadableDatabase();
+
+        String[] columns = new String[]{ "nurseID", "firstName", "lastName", "department", "password"};
+        String[] parameters = new String[]{ id, password };
+
+        Cursor cursor = sqLiteDatabase.query("Nurse", columns, "nurseID=? AND password=?", parameters, null, null, null, null);
+
+        if (cursor == null || cursor.getCount() == 0){
+
+            columns = new String[]{ "doctorID", "firstName", "lastName", "department", "password"};
+
+            cursor = sqLiteDatabase.query("Doctor", columns, "doctorID=? AND password=?", parameters, null, null, null, null);
+
+            if (cursor == null || cursor.getCount() == 0){
+                throw new LoginFailedException("Wrong Id/password. Please try again");
+            }
+        }
+
+        // SAVE LOGIN INFO IN PREFERENCES
+    }
+
     public Nurse getNurse(String nurseID) throws NurseNotFoundException {
 
         sqLiteDatabase = getReadableDatabase();
 
-        Cursor cursor = sqLiteDatabase.query("Nurse", new String[]{ "nurseID", "firstName", "lastName", "department", "password"}, "nurseID=" + nurseID, null, null, null, null, null);
+        String[] columns = new String[]{ "nurseID", "firstName", "lastName", "department", "password"};
+        String[] parameters = new String[]{ nurseID };
+
+        Cursor cursor = sqLiteDatabase.query("Nurse", columns , "nurseID=?", parameters, null, null, null, null);
 
         if (cursor == null || cursor.getCount() == 0){
             throw new NurseNotFoundException("Nurse with ID + " + nurseID + " not found");
@@ -76,7 +103,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase = getReadableDatabase();
 
-        Cursor cursor = sqLiteDatabase.query("Doctor", new String[]{ "doctorID", "firstName", "lastName", "department", "password"}, "nurseID=" + doctorID, null, null, null, null, null);
+        String[] columns = new String[]{ "doctorID", "firstName", "lastName", "department", "password"};
+        String[] parameters = new String[]{ doctorID };
+
+        Cursor cursor = sqLiteDatabase.query("Doctor", columns, "doctorID=?", parameters, null, null, null, null);
 
         if (cursor == null || cursor.getCount() == 0){
             throw new DoctorNotFoundException("Doctor with ID + " + doctorID + " not found");
@@ -98,7 +128,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase = getReadableDatabase();
 
-        Cursor cursor = sqLiteDatabase.query("Nurse", new String[]{ "nurseID" }, "nurseID=" + nurse.getNurseID(), null, null, null, null, null);
+        String[] columns = new String[]{ "nurseID" };
+        String[] parameters = new String[]{ nurse.getNurseID() };
+
+        Cursor cursor = sqLiteDatabase.query("Nurse", columns, "nurseID=?", parameters, null, null, null, null);
 
         if (cursor != null && cursor.getCount() > 0){
             throw new DuplicateIDException("ID already exists!");
@@ -121,7 +154,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase = getReadableDatabase();
 
-        Cursor cursor = sqLiteDatabase.query("Doctor", new String[]{ "doctorID" }, "nurseID=" + doctor.getDoctorID(), null, null, null, null, null);
+        String[] columns = new String[]{ "doctorID" };
+        String[] parameters = new String[]{ doctor.getDoctorID() };
+
+        Cursor cursor = sqLiteDatabase.query("Doctor", columns, "nurseID=?", parameters, null, null, null, null);
 
         if (cursor != null && cursor.getCount() > 0){
             throw new DuplicateIDException("ID already exists!");

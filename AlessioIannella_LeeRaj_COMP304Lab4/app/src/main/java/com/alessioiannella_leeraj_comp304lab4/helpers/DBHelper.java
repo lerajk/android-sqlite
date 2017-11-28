@@ -167,10 +167,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
         SharedPreferences sharedPref = context.getSharedPreferences("login", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("id", cursor.getString(0));
-        editor.putString("firstName", cursor.getString(1));
-        editor.putString("lastName", cursor.getString(2));
-        editor.putString("department", cursor.getString(3));
+        editor.putString("id", nurse.getNurseID());
+        editor.putString("firstName", nurse.getFirstName());
+        editor.putString("lastName", nurse.getLastName());
+        editor.putString("department", nurse.getDepartment());
         editor.putBoolean("isDoctor", false);
         editor.commit();
     }
@@ -182,7 +182,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String[] columns = new String[]{ "doctorID" };
         String[] parameters = new String[]{ doctor.getDoctorID() };
 
-        Cursor cursor = sqLiteDatabase.query("Doctor", columns, "nurseID=?", parameters, null, null, null, null);
+        Cursor cursor = sqLiteDatabase.query("Doctor", columns, "doctorID=?", parameters, null, null, null, null);
 
         if (cursor != null && cursor.getCount() > 0){
             throw new DuplicateIDException("ID already exists!");
@@ -202,10 +202,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
         SharedPreferences sharedPref = context.getSharedPreferences("login", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("id", cursor.getString(0));
-        editor.putString("firstName", cursor.getString(1));
-        editor.putString("lastName", cursor.getString(2));
-        editor.putString("department", cursor.getString(3));
+        editor.putString("id", doctor.getDoctorID());
+        editor.putString("firstName", doctor.getFirstName());
+        editor.putString("lastName", doctor.getLastName());
+        editor.putString("department", doctor.getDepartment());
         editor.putBoolean("isDoctor", true);
         editor.commit();
     }

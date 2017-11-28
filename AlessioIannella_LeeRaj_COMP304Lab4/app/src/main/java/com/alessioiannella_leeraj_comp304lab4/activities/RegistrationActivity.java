@@ -99,7 +99,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 nurse.setDepartment(editTextDepartment.getText().toString());
                 nurse.setPassword(editTextPassword.getText().toString());
 
-                dbHelper.addNurse(nurse);
+                dbHelper.addNurse(this, nurse);
 
                 Intent intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
@@ -120,10 +120,11 @@ public class RegistrationActivity extends AppCompatActivity {
                 doctor.setDepartment(editTextDepartment.getText().toString());
                 doctor.setPassword(editTextPassword.getText().toString());
 
-                dbHelper.addDoctor(doctor);
+                dbHelper.addDoctor(this, doctor);
 
                 Intent intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
+                finish();
             }
             catch (DuplicateIDException e) {
                 textViewErrorRegistration.setText(e.getLocalizedMessage());

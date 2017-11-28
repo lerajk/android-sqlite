@@ -41,10 +41,11 @@ public class LoginActivity extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(this);
 
         try{
-            dbHelper.login(editTextID.getText().toString(), editTextPassword.getText().toString());
+            dbHelper.login(this, editTextID.getText().toString(), editTextPassword.getText().toString());
 
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
+            finish();
         }
         catch (LoginFailedException e) {
             textViewLoginError.setText(e.getLocalizedMessage());

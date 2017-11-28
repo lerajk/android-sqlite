@@ -100,6 +100,9 @@ public class RegistrationActivity extends AppCompatActivity {
                 nurse.setPassword(editTextPassword.getText().toString());
 
                 dbHelper.addNurse(nurse);
+
+                Intent intent = new Intent(this, HomeActivity.class);
+                startActivity(intent);
             }
             catch (DuplicateIDException e) {
                 textViewErrorRegistration.setText(e.getLocalizedMessage());
@@ -118,6 +121,9 @@ public class RegistrationActivity extends AppCompatActivity {
                 doctor.setPassword(editTextPassword.getText().toString());
 
                 dbHelper.addDoctor(doctor);
+
+                Intent intent = new Intent(this, HomeActivity.class);
+                startActivity(intent);
             }
             catch (DuplicateIDException e) {
                 textViewErrorRegistration.setText(e.getLocalizedMessage());

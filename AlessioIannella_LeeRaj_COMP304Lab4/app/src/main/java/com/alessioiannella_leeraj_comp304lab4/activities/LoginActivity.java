@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alessioiannella_leeraj_comp304lab4.R;
+import com.alessioiannella_leeraj_comp304lab4.exceptions.LoginFailedException;
+import com.alessioiannella_leeraj_comp304lab4.helpers.DBHelper;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -26,6 +28,27 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void handleOnClickLogin(View view){
+
+        if (editTextID.getText().toString().isEmpty()){
+            textViewLoginError.setText("Insert ID");
+            return;
+        }
+        if (editTextPassword.getText().toString().isEmpty()){
+            textViewLoginError.setText("Insert password");
+            return;
+        }
+
+        DBHelper dbHelper = new DBHelper(this);
+
+        try{
+            dbHelper.login(editTextID.getText().toString(), editTextPassword.getText().toString());
+
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
+        }
+        catch (LoginFailedException e) {
+            textViewLoginError.setText(e.getLocalizedMessage());
+        }
 
     }
 

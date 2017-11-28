@@ -16,14 +16,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.TestData" />
+        <activity android:name=".activities.TestActivity" />
         <activity
             android:name=".activities.LoginActivity"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize|adjustPan"/>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize|adjustPan" />
         <activity android:name=".activities.HomeActivity" />
         <activity
             android:name=".activities.RegistrationActivity"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".activities.TestDetailActivity" />
+        <activity android:name=".activities.PatientDetailActivity" />
+        <activity android:name=".activities.PatientActivity"></activity>
     </application>
 
 </manifest>

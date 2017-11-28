@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import com.alessioiannella_leeraj_comp304lab4.R;
 
-public class TestData extends AppCompatActivity {
+public class TestDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test_data);
+        setContentView(R.layout.activity_test_detail);
     }
 }

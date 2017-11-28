@@ -1,6 +1,7 @@
 package com.alessioiannella_leeraj_comp304lab4.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,6 +45,9 @@ public class HomeActivity extends AppCompatActivity {
         textViewErrorTestID = (TextView) findViewById(R.id.textViewErrorTestID);
         textViewErrorPatientID = (TextView) findViewById(R.id.textViewErrorPatientID);
 
+        buttonAddTest = (Button) findViewById(R.id.buttonAddTest);
+        buttonAddPatient = (Button) findViewById(R.id.buttonAddPatient);
+
         SharedPreferences sharedPref = this.getSharedPreferences("login", Context.MODE_PRIVATE);
         String firstName = sharedPref.getString("firstName", "N/A");
         String lastName = sharedPref.getString("lastName", "N/A");
@@ -60,7 +64,8 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void handleOnClickAddTest(View view){
-
+        Intent intent = new Intent(this, TestActivity.class);
+        startActivity(intent);
     }
 
     public void handleOnClickGetTestByID(View view){
@@ -69,15 +74,27 @@ public class HomeActivity extends AppCompatActivity {
             return;
         }
 
-
+        Intent intent = new Intent(this, TestDetailActivity.class);
+        intent.putExtra("testID", editTextTestID.getText().toString());
+        startActivity(intent);
     }
 
     public void handleOnClickAddPatient(View view){
 
+        Intent intent = new Intent(this, PatientActivity.class);
+        startActivity(intent);
+
     }
 
     public void handleOnClickGetPatientByID(View view){
+        if (editTextPatientID.getText().toString().isEmpty()){
+            textViewErrorPatientID.setText("Please insert patient ID");
+            return;
+        }
 
+        Intent intent = new Intent(this, PatientDetailActivity.class);
+        intent.putExtra("patientID", editTextPatientID.getText().toString());
+        startActivity(intent);
     }
 
 

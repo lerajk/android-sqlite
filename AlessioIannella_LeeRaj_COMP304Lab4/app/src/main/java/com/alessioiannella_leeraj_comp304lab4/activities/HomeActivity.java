@@ -21,9 +21,6 @@ public class HomeActivity extends AppCompatActivity {
     private TextView textViewErrorTestID;
     private TextView textViewErrorPatientID;
 
-    private LinearLayout linearLayourGetTestByID;
-    private LinearLayout linearLayoutGetPatientByID;
-
     private EditText editTextTestID;
     private EditText editTextPatientID;
 
@@ -34,9 +31,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        linearLayourGetTestByID = (LinearLayout) findViewById(R.id.linearLayoutGetTestByID);
-        linearLayoutGetPatientByID = (LinearLayout) findViewById(R.id.linearLayoutGetPatientByID);
 
         editTextTestID = (EditText) findViewById(R.id.editTextTestID);
         editTextPatientID = (EditText) findViewById(R.id.editTextPatientID);
@@ -95,6 +89,13 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = new Intent(this, PatientDetailActivity.class);
         intent.putExtra("patientID", editTextPatientID.getText().toString());
         startActivity(intent);
+    }
+
+    public void handleOnClickLogout(View view){
+        SharedPreferences sharedPref = this.getSharedPreferences("login", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.clear();
+        editor.commit();
     }
 
 

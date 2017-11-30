@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.alessioiannella_leeraj_comp304lab4.activities.HomeActivity">
 
     <TextView
@@ -11,44 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="16dp"
         android:textAlignment="center"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
-
-    <LinearLayout
-        android:id="@+id/linearLayoutGetTestByID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="24dp"
-        android:orientation="horizontal"
-        android:textAlignment="center"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddTest">
-
-        <EditText
-            android:id="@+id/editTextTestID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Test ID"
-            android:inputType="textPersonName"/>
-
-        <Button
-            android:id="@+id/buttonGetTest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="handleOnClickGetTestByID"
-            android:text="get test by test id" />
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/buttonAddTest"
@@ -63,6 +30,44 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewHomeTitle" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutGetTestByID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        android:textAlignment="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAddTest">
+
+        <EditText
+            android:id="@+id/editTextTestID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Test ID"
+            android:inputType="textPersonName"/>
+
+        <Button
+            android:id="@+id/buttonGetTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="handleOnClickGetTestByID"
+            android:text="get test" />
+
+        <TextView
+            android:id="@+id/textViewErrorTestID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@android:color/holo_red_dark"/>
+    </LinearLayout>
 
     <Button
         android:id="@+id/buttonAddPatient"
@@ -80,9 +85,11 @@
 
     <LinearLayout
         android:id="@+id/linearLayoutGetPatientByID"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -93,7 +100,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
             android:hint="Patient ID"
             android:inputType="textPersonName" />
 
@@ -103,27 +109,22 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="handleOnClickGetPatientByID"
-            android:text="get patient by id" />
+            android:text="get patient" />
+
+        <TextView
+            android:id="@+id/textViewErrorPatientID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@android:color/holo_red_dark"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textViewErrorTestID"
+    <Button
+        android:id="@+id/buttonLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textColor="@android:color/holo_red_dark"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutGetTestByID" />
+        android:layout_marginTop="32dp"
+        android:onClick="handleOnClickLogout"
+        android:text="Logout"/>
 
-    <TextView
-        android:id="@+id/textViewErrorPatientID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textColor="@android:color/holo_red_dark"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutGetPatientByID" />
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

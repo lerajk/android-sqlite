@@ -16,6 +16,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText editTextID;
     private EditText editTextPassword;
     private TextView textViewLoginError;
+    private TextView textViewErrorLoginID;
+    private TextView textViewErrorLoginPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,16 +27,19 @@ public class LoginActivity extends AppCompatActivity {
         editTextID = (EditText) findViewById(R.id.editTextID);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         textViewLoginError = (TextView) findViewById(R.id.textViewLoginError);
+        textViewErrorLoginID = (TextView) findViewById(R.id.textViewErrorLoginID);
+        textViewErrorLoginPassword = (TextView) findViewById(R.id.textViewErrorLoginPassword);
+
     }
 
     public void handleOnClickLogin(View view){
 
         if (editTextID.getText().toString().isEmpty()){
-            textViewLoginError.setText("Insert ID");
+            textViewErrorLoginID.setText("Insert ID");
             return;
         }
         if (editTextPassword.getText().toString().isEmpty()){
-            textViewLoginError.setText("Insert password");
+            textViewErrorLoginPassword.setText("Insert password");
             return;
         }
 

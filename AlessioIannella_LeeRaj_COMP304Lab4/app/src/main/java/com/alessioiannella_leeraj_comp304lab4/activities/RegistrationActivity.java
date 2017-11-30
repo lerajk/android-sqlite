@@ -30,6 +30,14 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText editTextDepartment;
     private EditText editTextPassword;
     private EditText editTextConfirmPassword;
+
+    private TextView textViewErrorRegistrationID;
+    private TextView textViewErrorRegistrationFirstName;
+    private TextView textViewErrorRegistrationLastName;
+    private TextView textViewErrorRegistrationDepartment;
+    private TextView textViewErrorRegistrationPassword;
+    private TextView textViewErrorRegistrationConfirmPassword;
+
     private TextView textViewErrorRegistration;
 
     @Override
@@ -47,6 +55,12 @@ public class RegistrationActivity extends AppCompatActivity {
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         editTextConfirmPassword = (EditText) findViewById(R.id.editTextConfirmPassword);
 
+        textViewErrorRegistrationID = (TextView) findViewById(R.id.textViewErrorRegistrationID);
+        textViewErrorRegistrationFirstName = (TextView) findViewById(R.id.textViewErrorRegistrationFirstName);
+        textViewErrorRegistrationLastName = (TextView) findViewById(R.id.textViewErrorRegistrationLastName);
+        textViewErrorRegistrationDepartment = (TextView) findViewById(R.id.textViewErrorRegistrationDepartment);
+        textViewErrorRegistrationPassword = (TextView) findViewById(R.id.textViewErrorRegistrationPassword);
+        textViewErrorRegistrationConfirmPassword = (TextView) findViewById(R.id.textViewErrorRegistrationConfirmPassword);
         textViewErrorRegistration = (TextView) findViewById(R.id.textViewErrorRegistration);
     }
 
@@ -59,31 +73,31 @@ public class RegistrationActivity extends AppCompatActivity {
     public void handleOnClickRegister(View view){
 
         if (editTextID.getText().toString().isEmpty()){
-            textViewErrorRegistration.setText("Please enter ID");
+            textViewErrorRegistrationID.setText("Please enter ID");
             return;
         }
         if (editTextFirstName.getText().toString().isEmpty()){
-            textViewErrorRegistration.setText("Please enter First Name");
+            textViewErrorRegistrationFirstName.setText("Please enter First Name");
             return;
         }
         if (editTextLastName.getText().toString().isEmpty()){
-            textViewErrorRegistration.setText("Please enter Last Name");
+            textViewErrorRegistrationLastName.setText("Please enter Last Name");
             return;
         }
         if (editTextDepartment.getText().toString().isEmpty()){
-            textViewErrorRegistration.setText("Please enter Department");
+            textViewErrorRegistrationDepartment.setText("Please enter Department");
             return;
         }
         if (editTextPassword.getText().toString().isEmpty()){
-            textViewErrorRegistration.setText("Please enter Password");
+            textViewErrorRegistrationPassword.setText("Please enter Password");
             return;
         }
         if (editTextConfirmPassword.getText().toString().isEmpty()){
-            textViewErrorRegistration.setText("Please confirm password");
+            textViewErrorRegistrationConfirmPassword.setText("Please confirm password");
             return;
         }
         if (!editTextPassword.getText().toString().equals(editTextConfirmPassword.getText().toString())){
-            textViewErrorRegistration.setText("Passwords do not match");
+            textViewErrorRegistrationConfirmPassword.setText("Passwords do not match");
             return;
         }
 

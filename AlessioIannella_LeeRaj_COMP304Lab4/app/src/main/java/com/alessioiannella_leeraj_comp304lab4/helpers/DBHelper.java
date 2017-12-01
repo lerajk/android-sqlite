@@ -235,7 +235,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return test;
     }
 
-    public void addTest(Test test) throws DuplicateIDException{
+    public void addTest(Test test) throws DuplicateIDException, PatientNotFoundException{
         sqLiteDatabase = getReadableDatabase();
 
         String[] columns = new String[]{ "testID" };
@@ -245,6 +245,17 @@ public class DBHelper extends SQLiteOpenHelper {
 
         if (cursor != null && cursor.getCount() > 0){
             throw new DuplicateIDException("ID already exists!");
+        }
+
+        cursor.close();
+
+        columns = new String[]{ "patientID" };
+        parameters = new String[]{ test.getPatientID() };
+
+        cursor = sqLiteDatabase.query("Patient", columns, "patientID=?", parameters, null, null, null, null);
+
+        if (cursor != null && cursor.getCount() > 0){
+            throw new PatientNotFoundException("Patient with ID " + test.getPatientID() + " not found!");
         }
 
         sqLiteDatabase = getWritableDatabase();

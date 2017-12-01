@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alessioiannella_leeraj_comp304lab4.R;
+import com.alessioiannella_leeraj_comp304lab4.exceptions.TestNotFoundException;
+import com.alessioiannella_leeraj_comp304lab4.helpers.DBHelper;
 
 import org.w3c.dom.Text;
 
@@ -68,9 +70,16 @@ public class HomeActivity extends AppCompatActivity {
             return;
         }
 
-        Intent intent = new Intent(this, TestDetailActivity.class);
-        intent.putExtra("testID", editTextTestID.getText().toString());
-        startActivity(intent);
+        DBHelper dbHelper = new DBHelper(this);
+        try{
+            dbHelper.getTestByID(editTextTestID.getText().toString());
+            Intent intent = new Intent(this, TestDetailActivity.class);
+            intent.putExtra("testID", editTextTestID.getText().toString());
+            startActivity(intent);
+        }
+        catch (TestNotFoundException e) {
+            textViewErrorTestID.setText(e.getLocalizedMessage());
+        }
     }
 
     public void handleOnClickAddPatient(View view){

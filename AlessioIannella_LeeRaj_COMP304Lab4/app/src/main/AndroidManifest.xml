@@ -26,7 +26,8 @@
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".activities.TestDetailActivity" />
         <activity android:name=".activities.PatientDetailActivity" />
-        <activity android:name=".activities.PatientActivity"></activity>
+        <activity android:name=".activities.PatientActivity" />
+        <activity android:name=".activities.PatientEditActivity"></activity>
     </application>
 
 </manifest>

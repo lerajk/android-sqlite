@@ -82,6 +82,7 @@ public class PatientActivity extends AppCompatActivity {
             patient.setFirstName(editTextAddPatientFirstName.getText().toString());
             patient.setLastName(editTextAddPatientLastName.getText().toString());
             patient.setDepartment(editTextAddPatientDepartment.getText().toString());
+            patient.setDoctorID(doctorID);
             patient.setRoom(editTextAddPatientRoom.getText().toString());
 
             DBHelper dbHelper = new DBHelper(this);

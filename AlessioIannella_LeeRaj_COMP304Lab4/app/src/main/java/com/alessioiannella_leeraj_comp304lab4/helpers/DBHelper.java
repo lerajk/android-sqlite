@@ -80,6 +80,8 @@ public class DBHelper extends SQLiteOpenHelper {
             isDoctor = true;
         }
 
+        cursor.moveToFirst();
+
         SharedPreferences sharedPref = context.getSharedPreferences("login", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("id", cursor.getString(0));
@@ -191,7 +193,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase = getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("nurseID", doctor.getDoctorID());
+        values.put("doctorID", doctor.getDoctorID());
         values.put("firstName", doctor.getFirstName());
         values.put("lastName", doctor.getLastName());
         values.put("department", doctor.getDepartment());
@@ -254,7 +256,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         cursor = sqLiteDatabase.query("Patient", columns, "patientID=?", parameters, null, null, null, null);
 
-        if (cursor != null && cursor.getCount() > 0){
+        if (cursor == null || cursor.getCount() == 0){
             throw new PatientNotFoundException("Patient with ID " + test.getPatientID() + " not found!");
         }
 
@@ -320,6 +322,34 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put("room", patient.getRoom());
 
         sqLiteDatabase.insert("Patient", null, values);
+        sqLiteDatabase.close();
+    }
+
+    public void updatePatient(Patient patient) throws PatientNotFoundException{
+
+        sqLiteDatabase = getReadableDatabase();
+
+        String[] columns = new String[]{ "patientID" };
+        String[] parameters = new String[]{ patient.getPatientID() };
+
+        Cursor cursor = sqLiteDatabase.query("Patient", columns, "patientID=?", parameters, null, null, null, null);
+
+        if (cursor == null || cursor.getCount() == 0){
+            throw new PatientNotFoundException("Patient with ID " + patient.getPatientID() + " not found");
+        }
+        sqLiteDatabase = getWritableDatabase();
+
+        parameters = new String[]{ patient.getPatientID() };
+
+        ContentValues values = new ContentValues();
+        values.put("patientID", patient.getPatientID());
+        values.put("firstName", patient.getFirstName());
+        values.put("lastName", patient.getLastName());
+        values.put("department", patient.getDepartment());
+        values.put("doctorID", patient.getDoctorID());
+        values.put("room", patient.getRoom());
+
+        sqLiteDatabase.update("Patient", values, "patientID=?", parameters);
         sqLiteDatabase.close();
     }
 }

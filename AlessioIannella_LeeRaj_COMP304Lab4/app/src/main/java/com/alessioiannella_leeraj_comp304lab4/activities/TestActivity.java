@@ -53,69 +53,85 @@ public class TestActivity extends AppCompatActivity {
     }
 
     public void handleOnClickSubmitTest(View view){
+
+        hideViews();
+
+        boolean error = false;
+
         if (editTextTestID.getText().toString().isEmpty()){
             textViewErrorTestID.setText("Please enter Test ID");
-            return;
+            error = true;
         }
         if (editTextPatientID.getText().toString().isEmpty()){
             textViewErrorPatientID.setText("Please enter Patient ID");
-            return;
+            error = true;
         }
         if (editTextBPL.getText().toString().isEmpty()){
             textViewErrorBPL.setText("Please enter BPL");
-            return;
+            error = true;
         }
         if (editTextBPH.getText().toString().isEmpty()){
             textViewErrorBPH.setText("Please enter BPH");
-            return;
+            error = true;
         }
         if (editTextTemperature.getText().toString().isEmpty()){
             textViewErrorTemperature.setText("Please enter Temperature");
-            return;
+            error = true;
         }
 
-        SharedPreferences sharedPref = this.getSharedPreferences("login", Context.MODE_PRIVATE);
-        String nurseID = sharedPref.getString("id", "N/A");
-
-        try{
-            float bpl = Float.parseFloat(editTextBPL.getText().toString());
+        if (!error){
+            SharedPreferences sharedPref = this.getSharedPreferences("login", Context.MODE_PRIVATE);
+            String nurseID = sharedPref.getString("id", "N/A");
 
             try{
-                float bph = Float.parseFloat(editTextBPH.getText().toString());
+                float bpl = Float.parseFloat(editTextBPL.getText().toString());
 
                 try{
-                    float temperature = Float.parseFloat(editTextTemperature.getText().toString());
+                    float bph = Float.parseFloat(editTextBPH.getText().toString());
 
-                    Test test = new Test();
-                    test.setTestID(editTextTestID.getText().toString());
-                    test.setPatientID(editTextPatientID.getText().toString());
-                    test.setNurseID(nurseID);
-                    test.setBpl(bpl);
-                    test.setBph(bph);
-                    test.setTemperature(temperature);
+                    try{
+                        float temperature = Float.parseFloat(editTextTemperature.getText().toString());
 
-                    DBHelper dbHelper = new DBHelper(this);
+                        Test test = new Test();
+                        test.setTestID(editTextTestID.getText().toString());
+                        test.setPatientID(editTextPatientID.getText().toString());
+                        test.setNurseID(nurseID);
+                        test.setBpl(bpl);
+                        test.setBph(bph);
+                        test.setTemperature(temperature);
 
-                    dbHelper.addTest(test);
-                    Toast.makeText(this, "Test " + editTextTestID.getText().toString() + " added succesfully!", Toast.LENGTH_SHORT).show();
-                    finish();
+                        DBHelper dbHelper = new DBHelper(this);
 
+                        dbHelper.addTest(test);
+                        Toast.makeText(this, "Test " + editTextTestID.getText().toString() + " added succesfully!", Toast.LENGTH_SHORT).show();
+                        finish();
+
+                    }
+                    catch (NumberFormatException e){
+                        textViewErrorTemperature.setText("Temperature is not in the right format. Please enter a number");
+                    }
+                    catch (DuplicateIDException | PatientNotFoundException e) {
+                        textViewErrorSubmitTest.setText(e.getLocalizedMessage());
+
+                    }
                 }
                 catch (NumberFormatException e){
-                    textViewErrorTemperature.setText("Temperature is not in the right format. Please enter a number");
-                }
-                catch (DuplicateIDException | PatientNotFoundException e) {
-                    textViewErrorSubmitTest.setText(e.getLocalizedMessage());
-
+                    textViewErrorBPH.setText("BPH is not in the right format. Please enter a number");
                 }
             }
             catch (NumberFormatException e){
-                textViewErrorBPH.setText("BPH is not in the right format. Please enter a number");
+                textViewErrorBPL.setText("BPL is not in the right format. Please enter a number");
             }
         }
-        catch (NumberFormatException e){
-            textViewErrorBPL.setText("BPL is not in the right format. Please enter a number");
-        }
+    }
+
+    private void hideViews() {
+        textViewErrorTestID.setText("");
+        textViewErrorPatientID.setText("");
+        textViewErrorBPL.setText("");
+        textViewErrorBPH.setText("");
+        textViewErrorTemperature.setText("");
+        textViewErrorSubmitTest.setText("");
 
     }
 }

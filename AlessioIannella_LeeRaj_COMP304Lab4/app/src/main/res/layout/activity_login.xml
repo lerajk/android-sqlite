@@ -22,14 +22,15 @@
             android:id="@+id/editTextID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:hint="User ID"
             android:layout_weight="1"
-            android:hint="ID"
             android:inputType="textPersonName"/>
         <TextView
             android:id="@+id/textViewErrorLoginID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textColor="@color/red"/>
     </LinearLayout>
 
     <LinearLayout
@@ -47,7 +48,8 @@
             android:id="@+id/textViewErrorLoginPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textColor="@color/red"/>
     </LinearLayout>
 
     <LinearLayout
@@ -66,7 +68,7 @@
             android:id="@+id/textViewLoginError"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="@color/red"
             android:layout_weight="5"/>
     </LinearLayout>
 

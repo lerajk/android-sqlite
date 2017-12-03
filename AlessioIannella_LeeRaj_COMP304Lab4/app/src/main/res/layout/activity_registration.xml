@@ -71,13 +71,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="ID"
+                android:hint="User ID"
                 android:inputType="textPersonName" />
             <TextView
                 android:id="@+id/textViewErrorRegistrationID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/red"/>
         </LinearLayout>
 
         <LinearLayout
@@ -101,7 +102,8 @@
                 android:id="@+id/textViewErrorRegistrationFirstName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/red"/>
         </LinearLayout>
 
         <LinearLayout
@@ -119,13 +121,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="LastName"
+                android:hint="Last Name"
                 android:inputType="textPersonName" />
             <TextView
                 android:id="@+id/textViewErrorRegistrationLastName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/red"/>
 
         </LinearLayout>
 
@@ -150,6 +153,7 @@
                 android:id="@+id/textViewErrorRegistrationDepartment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/red"
                 android:layout_weight="1"/>
 
         </LinearLayout>
@@ -175,6 +179,7 @@
                 android:id="@+id/textViewErrorRegistrationPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/red"
                 android:layout_weight="1"/>
 
         </LinearLayout>
@@ -200,6 +205,7 @@
                 android:id="@+id/textViewErrorRegistrationConfirmPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/red"
                 android:layout_weight="1"/>
 
         </LinearLayout>
@@ -226,7 +232,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:textColor="@android:color/holo_red_dark"
+                android:textColor="@color/red"
                 android:layout_weight="5"/>
 
         </LinearLayout>

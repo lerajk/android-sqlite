@@ -30,30 +30,37 @@ public class LoginActivity extends AppCompatActivity {
         textViewErrorLoginID = (TextView) findViewById(R.id.textViewErrorLoginID);
         textViewErrorLoginPassword = (TextView) findViewById(R.id.textViewErrorLoginPassword);
 
+        hideViews();
     }
 
     public void handleOnClickLogin(View view){
 
+        hideViews();
+
+        boolean error = false;
+
         if (editTextID.getText().toString().isEmpty()){
-            textViewErrorLoginID.setText("Insert ID");
-            return;
+            textViewErrorLoginID.setText("Please enter user ID");
+            error = true;
         }
         if (editTextPassword.getText().toString().isEmpty()){
-            textViewErrorLoginPassword.setText("Insert password");
-            return;
+            textViewErrorLoginPassword.setText("Please enter password");
+            error = true;
         }
 
-        DBHelper dbHelper = new DBHelper(this);
+        if (!error){
+            DBHelper dbHelper = new DBHelper(this);
 
-        try{
-            dbHelper.login(this, editTextID.getText().toString(), editTextPassword.getText().toString());
+            try{
+                dbHelper.login(this, editTextID.getText().toString(), editTextPassword.getText().toString());
 
-            Intent intent = new Intent(this, HomeActivity.class);
-            startActivity(intent);
-            finish();
-        }
-        catch (LoginFailedException e) {
-            textViewLoginError.setText(e.getLocalizedMessage());
+                Intent intent = new Intent(this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+            catch (LoginFailedException e) {
+                textViewLoginError.setText(e.getLocalizedMessage());
+            }
         }
 
     }
@@ -61,5 +68,11 @@ public class LoginActivity extends AppCompatActivity {
     public void handleOnClickGoToRegistration(View view){
         Intent intent = new Intent(this, RegistrationActivity.class);
         startActivity(intent);
+    }
+
+    public void hideViews(){
+        textViewErrorLoginID.setText("");
+        textViewErrorLoginPassword.setText("");
+        textViewLoginError.setText("");
     }
 }

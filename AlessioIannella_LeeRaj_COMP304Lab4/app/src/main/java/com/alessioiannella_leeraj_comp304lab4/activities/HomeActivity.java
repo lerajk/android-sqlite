@@ -12,8 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alessioiannella_leeraj_comp304lab4.R;
+import com.alessioiannella_leeraj_comp304lab4.exceptions.PatientNotFoundException;
 import com.alessioiannella_leeraj_comp304lab4.exceptions.TestNotFoundException;
 import com.alessioiannella_leeraj_comp304lab4.helpers.DBHelper;
+import com.alessioiannella_leeraj_comp304lab4.models.Patient;
 
 import org.w3c.dom.Text;
 
@@ -95,9 +97,18 @@ public class HomeActivity extends AppCompatActivity {
             return;
         }
 
-        Intent intent = new Intent(this, PatientDetailActivity.class);
-        intent.putExtra("patientID", editTextPatientID.getText().toString());
-        startActivity(intent);
+        try{
+            DBHelper dbHelper = new DBHelper(this);
+            Patient patient = dbHelper.getPatientByID(editTextPatientID.getText().toString());
+            Intent intent = new Intent(this, PatientDetailActivity.class);
+            intent.putExtra("patientID", patient.getPatientID());
+            startActivity(intent);
+        }
+        catch (PatientNotFoundException e) {
+            textViewErrorPatientID.setText(e.getLocalizedMessage());
+        }
+
+
     }
 
     public void handleOnClickLogout(View view){
@@ -105,6 +116,8 @@ public class HomeActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.clear();
         editor.commit();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
 

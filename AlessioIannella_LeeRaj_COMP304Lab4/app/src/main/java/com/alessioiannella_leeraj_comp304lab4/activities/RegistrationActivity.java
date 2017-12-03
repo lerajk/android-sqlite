@@ -62,6 +62,8 @@ public class RegistrationActivity extends AppCompatActivity {
         textViewErrorRegistrationPassword = (TextView) findViewById(R.id.textViewErrorRegistrationPassword);
         textViewErrorRegistrationConfirmPassword = (TextView) findViewById(R.id.textViewErrorRegistrationConfirmPassword);
         textViewErrorRegistration = (TextView) findViewById(R.id.textViewErrorRegistration);
+
+        hideViews();
     }
 
     public void handleOnCLikcGoToLogin(View view){
@@ -72,78 +74,94 @@ public class RegistrationActivity extends AppCompatActivity {
 
     public void handleOnClickRegister(View view){
 
+        hideViews();
+
+        boolean error = false;
+
         if (editTextID.getText().toString().isEmpty()){
-            textViewErrorRegistrationID.setText("Please enter ID");
-            return;
+            textViewErrorRegistrationID.setText("Please enter user ID");
+            error = true;
         }
         if (editTextFirstName.getText().toString().isEmpty()){
-            textViewErrorRegistrationFirstName.setText("Please enter First Name");
-            return;
+            textViewErrorRegistrationFirstName.setText("Please enter first name");
+            error = true;
         }
         if (editTextLastName.getText().toString().isEmpty()){
-            textViewErrorRegistrationLastName.setText("Please enter Last Name");
-            return;
+            textViewErrorRegistrationLastName.setText("Please enter last name");
+            error = true;
         }
         if (editTextDepartment.getText().toString().isEmpty()){
-            textViewErrorRegistrationDepartment.setText("Please enter Department");
-            return;
+            textViewErrorRegistrationDepartment.setText("Please enter department");
+            error = true;
         }
         if (editTextPassword.getText().toString().isEmpty()){
-            textViewErrorRegistrationPassword.setText("Please enter Password");
-            return;
+            textViewErrorRegistrationPassword.setText("Please enter password");
+            error = true;
         }
         if (editTextConfirmPassword.getText().toString().isEmpty()){
             textViewErrorRegistrationConfirmPassword.setText("Please confirm password");
-            return;
+            error = true;
         }
         if (!editTextPassword.getText().toString().equals(editTextConfirmPassword.getText().toString())){
             textViewErrorRegistrationConfirmPassword.setText("Passwords do not match");
-            return;
+            error = true;
         }
 
-        if (radioButtonNurse.isChecked()){
+        if (!error){
+            if (radioButtonNurse.isChecked()){
 
-            try{
-                DBHelper dbHelper = new DBHelper(this);
+                try{
+                    DBHelper dbHelper = new DBHelper(this);
 
-                Nurse nurse = new Nurse();
-                nurse.setNurseID(editTextID.getText().toString());
-                nurse.setFirstName(editTextFirstName.getText().toString());
-                nurse.setLastName(editTextLastName.getText().toString());
-                nurse.setDepartment(editTextDepartment.getText().toString());
-                nurse.setPassword(editTextPassword.getText().toString());
+                    Nurse nurse = new Nurse();
+                    nurse.setNurseID(editTextID.getText().toString());
+                    nurse.setFirstName(editTextFirstName.getText().toString());
+                    nurse.setLastName(editTextLastName.getText().toString());
+                    nurse.setDepartment(editTextDepartment.getText().toString());
+                    nurse.setPassword(editTextPassword.getText().toString());
 
-                dbHelper.addNurse(this, nurse);
+                    dbHelper.addNurse(this, nurse);
 
-                Intent intent = new Intent(this, HomeActivity.class);
-                startActivity(intent);
+                    Intent intent = new Intent(this, HomeActivity.class);
+                    startActivity(intent);
+                }
+                catch (DuplicateIDException e) {
+                    textViewErrorRegistration.setText(e.getLocalizedMessage());
+                }
+
             }
-            catch (DuplicateIDException e) {
-                textViewErrorRegistration.setText(e.getLocalizedMessage());
-            }
+            else if (radioButtonDoctor.isChecked()){
+                try{
+                    DBHelper dbHelper = new DBHelper(this);
 
+                    Doctor doctor = new Doctor();
+                    doctor.setDoctorID(editTextID.getText().toString());
+                    doctor.setFirstName(editTextFirstName.getText().toString());
+                    doctor.setLastName(editTextLastName.getText().toString());
+                    doctor.setDepartment(editTextDepartment.getText().toString());
+                    doctor.setPassword(editTextPassword.getText().toString());
+
+                    dbHelper.addDoctor(this, doctor);
+
+                    Intent intent = new Intent(this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                catch (DuplicateIDException e) {
+                    textViewErrorRegistration.setText(e.getLocalizedMessage());
+                }
+            }
         }
-        else if (radioButtonDoctor.isChecked()){
-            try{
-                DBHelper dbHelper = new DBHelper(this);
 
-                Doctor doctor = new Doctor();
-                doctor.setDoctorID(editTextID.getText().toString());
-                doctor.setFirstName(editTextFirstName.getText().toString());
-                doctor.setLastName(editTextLastName.getText().toString());
-                doctor.setDepartment(editTextDepartment.getText().toString());
-                doctor.setPassword(editTextPassword.getText().toString());
+    }
 
-                dbHelper.addDoctor(this, doctor);
-
-                Intent intent = new Intent(this, HomeActivity.class);
-                startActivity(intent);
-                finish();
-            }
-            catch (DuplicateIDException e) {
-                textViewErrorRegistration.setText(e.getLocalizedMessage());
-            }
-        }
+    public void hideViews(){
+        textViewErrorRegistrationID.setText("");
+        textViewErrorRegistrationFirstName.setText("");
+        textViewErrorRegistrationLastName.setText("");
+        textViewErrorRegistrationDepartment.setText("");
+        textViewErrorRegistrationPassword.setText("");
+        textViewErrorRegistrationConfirmPassword.setText("");
 
     }
 }

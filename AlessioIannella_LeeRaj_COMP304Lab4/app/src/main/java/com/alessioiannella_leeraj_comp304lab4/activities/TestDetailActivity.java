@@ -3,7 +3,9 @@ package com.alessioiannella_leeraj_comp304lab4.activities;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alessioiannella_leeraj_comp304lab4.R;
 import com.alessioiannella_leeraj_comp304lab4.exceptions.NurseNotFoundException;
@@ -33,6 +35,15 @@ public class TestDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_detail);
 
+        textViewTestDetailID = (TextView) findViewById(R.id.textViewTestDetailID);
+        textViewTestDetailPatient = (TextView) findViewById(R.id.textViewTestDetailPatient);
+        textViewTestDetailNurse = (TextView) findViewById(R.id.textViewTestDetailNurse);
+        textViewTestDetailBPL = (TextView) findViewById(R.id.textViewTestDetailBPL);
+        textViewTestDetailBPH = (TextView) findViewById(R.id.textViewTestDetailBPH);
+        textViewTestDetailTemperature = (TextView) findViewById(R.id.textViewTestDetailTemperature);
+
+        constraintLayoutProgressBar = (ConstraintLayout) findViewById(R.id.constraintLayoutProgressBar);
+
         String testID = this.getIntent().getExtras().getString("testID");
 
         DBHelper dbHelper = new DBHelper(this);
@@ -48,15 +59,12 @@ public class TestDetailActivity extends AppCompatActivity {
             textViewTestDetailBPH.setText("BPH Value: " + test.getBph());
             textViewTestDetailBPL.setText("BPL Value: " + test.getBpl());
             textViewTestDetailTemperature.setText("Temperature value: " + test.getTemperature());
+
+            constraintLayoutProgressBar.setVisibility(View.GONE);
         }
-        catch (TestNotFoundException e) {
-            e.printStackTrace();
-        }
-        catch (PatientNotFoundException e) {
-            e.printStackTrace();
-        }
-        catch (NurseNotFoundException e) {
-            e.printStackTrace();
+        catch (TestNotFoundException | PatientNotFoundException | NurseNotFoundException e) {
+            Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
 }

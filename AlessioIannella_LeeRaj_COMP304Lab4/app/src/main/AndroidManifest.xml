@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,17 +17,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.TestActivity" />
-        <activity
-            android:name=".activities.LoginActivity"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize|adjustPan" />
         <activity android:name=".activities.HomeActivity" />
-        <activity
-            android:name=".activities.RegistrationActivity"
-            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".activities.RegistrationActivity"/>
         <activity android:name=".activities.TestDetailActivity" />
         <activity android:name=".activities.PatientDetailActivity" />
         <activity android:name=".activities.PatientActivity" />
-        <activity android:name=".activities.PatientEditActivity"></activity>
+        <activity android:name=".activities.PatientEditActivity"/>
     </application>
 
 </manifest>

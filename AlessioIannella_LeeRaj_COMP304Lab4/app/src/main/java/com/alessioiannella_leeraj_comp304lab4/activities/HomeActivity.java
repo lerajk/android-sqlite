@@ -116,7 +116,7 @@ public class HomeActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.clear();
         editor.commit();
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 

@@ -1,130 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.alessioiannella_leeraj_comp304lab4.activities.HomeActivity">
-
-    <TextView
-        android:id="@+id/textViewHomeTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:textAlignment="center"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <Button
-        android:id="@+id/buttonAddTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="31dp"
-        android:onClick="handleOnClickAddTest"
-        android:text="Add a new test"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHomeTitle" />
-
+    
     <LinearLayout
-        android:id="@+id/linearLayoutGetTestByID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="24dp"
-        android:orientation="horizontal"
-        android:textAlignment="center"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddTest">
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewHomeTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"/>
+
+        <Button
+            android:id="@+id/buttonAddTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="handleOnClickAddTest"
+            android:text="Add a new test"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="32dp"
+            android:background="@color/blue"/>
 
         <EditText
             android:id="@+id/editTextTestID"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginTop="32dp"
             android:hint="Test ID"
             android:inputType="textPersonName"/>
-
-        <Button
-            android:id="@+id/buttonGetTest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="handleOnClickGetTestByID"
-            android:text="get test" />
 
         <TextView
             android:id="@+id/textViewErrorTestID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_gravity="left"
             android:textColor="@android:color/holo_red_dark"/>
-    </LinearLayout>
 
-    <Button
-        android:id="@+id/buttonAddPatient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:onClick="handleOnClickAddPatient"
-        android:text="Add new patient"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/textViewErrorTestID"
-        app:layout_constraintHorizontal_bias="0.504" />
+        <Button
+            android:id="@+id/buttonGetTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="handleOnClickGetTestByID"
+            android:text="get test" />
 
-    <LinearLayout
-        android:id="@+id/linearLayoutGetPatientByID"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddPatient">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="32dp"
+            android:background="@color/blue"/>
+
+        <Button
+            android:id="@+id/buttonAddPatient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="handleOnClickAddPatient"
+            android:text="Add new patient"
+            android:layout_marginTop="32dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="32dp"
+            android:background="@color/blue"/>
 
         <EditText
             android:id="@+id/editTextPatientID"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginTop="32dp"
             android:hint="Patient ID"
             android:inputType="textPersonName" />
-
-        <Button
-            android:id="@+id/buttonGetPatientID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="handleOnClickGetPatientByID"
-            android:text="get patient" />
 
         <TextView
             android:id="@+id/textViewErrorPatientID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_gravity="left"
             android:textColor="@android:color/holo_red_dark"/>
+
+        <Button
+            android:id="@+id/buttonGetPatientID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="handleOnClickGetPatientByID"
+            android:text="get patient" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="32dp"
+            android:background="@color/blue"/>
+
+        <Button
+            android:id="@+id/buttonLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:onClick="handleOnClickLogout"
+            android:text="Logout"/>
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="150dp"/>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/buttonLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:onClick="handleOnClickLogout"
-        android:text="Logout"/>
-
-</LinearLayout>
+</ScrollView>

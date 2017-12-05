@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="32dp"
+    android:layout_marginRight="32dp"
+    android:layout_marginTop="32dp"
     android:orientation="vertical"
     tools:context="com.alessioiannella_leeraj_comp304lab4.activities.MainActivity">
 
@@ -14,81 +17,68 @@
         android:text="@string/welcome_to_the_hospital_app_please_enter_your_id_and_password_to_login"
         android:textAlignment="center"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <EditText
-            android:id="@+id/editTextID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="User ID"
-            android:layout_weight="1"
-            android:inputType="textPersonName"/>
-        <TextView
-            android:id="@+id/textViewErrorLoginID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/red"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <EditText
-            android:id="@+id/editTextPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Password"
-            android:inputType="textPassword"/>
-        <TextView
-            android:id="@+id/textViewErrorLoginPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/red"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayoutLoginButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/buttonLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="handleOnClickLogin"
-            android:text="LOGIN"/>
-        <TextView
-            android:id="@+id/textViewLoginError"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/red"
-            android:layout_weight="5"/>
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/textViewDontHaveAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <EditText
+        android:id="@+id/editTextID"
         android:layout_marginTop="32dp"
-        android:text="Don't have an account?"
-        android:textAlignment="center"
-        android:gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogin"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="User ID"
+        android:inputType="textPersonName"/>
+    <TextView
+        android:id="@+id/textViewErrorLoginID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:textColor="@color/red"/>
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"/>
+    <TextView
+        android:id="@+id/textViewErrorLoginPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:textColor="@color/red"/>
 
     <Button
-        android:id="@+id/buttonGoToRegistration"
+        android:id="@+id/buttonLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="handleOnClickGoToRegistration"
-        android:text="Create an account"
-        android:layout_marginTop="8dp"
-        android:gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDontHaveAccount"/>
+        android:layout_gravity="center"
+        android:onClick="handleOnClickLogin"
+        android:text="LOGIN"/>
+    <TextView
+        android:id="@+id/textViewLoginError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/red"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/textViewDontHaveAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account?"
+            android:textAlignment="center"
+            android:layout_weight="3"/>
+
+        <Button
+            android:id="@+id/buttonGoToRegistration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="handleOnClickGoToRegistration"
+            android:text="Create an account"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+
 </LinearLayout>

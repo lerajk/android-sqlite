@@ -31,6 +31,9 @@ public class HomeActivity extends AppCompatActivity {
     private Button buttonAddTest;
     private Button buttonAddPatient;
 
+    private View viewSeparatorNewTest;
+    private View getViewSeparatorNewPatient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,9 @@ public class HomeActivity extends AppCompatActivity {
         buttonAddTest = (Button) findViewById(R.id.buttonAddTest);
         buttonAddPatient = (Button) findViewById(R.id.buttonAddPatient);
 
+        viewSeparatorNewTest = (View) findViewById(R.id.viewSeparatorNewTest);
+        getViewSeparatorNewPatient = (View) findViewById(R.id.viewSeparatorNewPatient);
+
         SharedPreferences sharedPref = this.getSharedPreferences("login", Context.MODE_PRIVATE);
         String firstName = sharedPref.getString("firstName", "N/A");
         String lastName = sharedPref.getString("lastName", "N/A");
@@ -55,9 +61,11 @@ public class HomeActivity extends AppCompatActivity {
 
         if (isDoctor){
             buttonAddTest.setVisibility(View.GONE);
+            viewSeparatorNewTest.setVisibility(View.GONE);
         }
         else{
             buttonAddPatient.setVisibility(View.GONE);
+            getViewSeparatorNewPatient.setVisibility(View.GONE);
         }
     }
 

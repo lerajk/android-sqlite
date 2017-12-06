@@ -30,6 +30,7 @@
             android:text="Add new test"/>
 
         <View
+            android:id="@+id/viewSeparatorNewTest"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginTop="32dp"
@@ -45,6 +46,7 @@
             android:layout_marginTop="32dp"/>
 
         <View
+            android:id="@+id/viewSeparatorNewPatient"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginTop="32dp"
